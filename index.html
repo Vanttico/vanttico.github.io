@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vanttico — Agencia Digital</title>
+  <meta name="description" content="Vanttico - Agencia digital. Marketing, diseño web, afiliados y automatización. De la disciplina nace el hábito. De la obsesión, el legado." />
+  <style>
+    /* ------- Root colors & base -------- */
+    :root{
+      --bg: #f6f7fb;          /* fondo principal */
+      --card: #ffffff;        /* cuadros */
+      --muted: #6b7280;       /* texto secundario */
+      --accent: #0f5132;      /* verde elegante */
+      --accent-2: #0fbf83;    /* verde liviano */
+      --shadow: rgba(16,24,40,0.06);
+      --glass: rgba(255,255,255,0.7);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%; margin:0; font-family:Inter, "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial; background:var(--bg); color:#0f1724;}
+    a{color:inherit}
+
+    /* ------- layout -------- */
+    header.hero{
+      min-height:78vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:48px 20px;
+      background: linear-gradient(180deg, rgba(15,81,50,0.06) 0%, rgba(255,255,255,0.35) 100%), url('img/fondo-portada.jpg');
+      background-size:cover;
+      background-position:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* ribbon / attitude */
+    .ribbon{
+      position:absolute;
+      top:22px;
+      left:50%;
+      transform:translateX(-50%);
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:white;
+      padding:6px 14px;
+      border-radius:999px;
+      font-weight:700;
+      letter-spacing:0.6px;
+      font-size:13px;
+      box-shadow:0 6px 18px rgba(15,81,50,0.18);
+    }
+
+    .hero-inner{
+      max-width:1100px;
+      width:100%;
+      display:flex;
+      gap:36px;
+      align-items:center;
+      justify-content:center;
+      padding:30px;
+    }
+
+    .hero-left{flex:1; min-width:300px}
+    .hero-right{flex:1; min-width:300px; display:flex; justify-content:center}
+
+    .logo-wrap img.logo-vanttico{
+      max-width:220px;
+      display:block;
+      margin:0 auto 18px;
+    }
+
+    h1.title{
+      font-size:32px;
+      margin:0 0 12px 0;
+      line-height:1.05;
+      color:var(--accent);
+      font-weight:800;
+    }
+
+    p.lead{
+      margin:0 0 18px 0;
+      color:var(--muted);
+      max-width:720px;
+      font-size:16px;
+    }
+
+    .cta-row{display:flex; gap:12px; margin-top:18px; flex-wrap:wrap}
+    .btn{
+      background:var(--accent);
+      color:#fff;
+      padding:12px 18px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:700;
+      box-shadow: 0 8px 24px rgba(15,81,50,0.12);
+    }
+    .btn.secondary{
+      background:transparent;
+      border:1px solid rgba(15,81,50,0.12);
+      color:var(--accent);
+      font-weight:700;
+    }
+
+    /* visual card on right */
+    .hero-card{
+      width:100%;
+      max-width:420px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,255,255,0.98));
+      border-radius:14px;
+      padding:18px;
+      box-shadow: 0 12px 40px var(--shadow);
+      border:1px solid rgba(15,81,50,0.05);
+    }
+    .hero-card h4{margin:0 0 8px 0; color:#083826}
+    .hero-card p{margin:0; color:var(--muted); font-size:14px}
+    .hero-card .mini-stats{display:flex; gap:14px; margin-top:14px}
+    .stat{background:linear-gradient(90deg,#fff,#f7faf9); padding:10px; border-radius:10px; min-width:100px; text-align:center; box-shadow:0 6px 18px rgba(2,6,23,0.04)}
+    .stat strong{display:block; color:#062b1b; font-size:18px}
+
+    /* Section base */
+    section{padding:56px 20px; max-width:1100px; margin:0 auto}
+    h2.section-title{font-size:22px; margin:0 0 18px 0; color:#0b2b1b}
+    p.section-sub{color:var(--muted); margin:0 0 22px 0}
+
+    /* Grid of cuadros (quienes somos / servicios) */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:18px;
+      align-items:stretch;
+    }
+    .card{
+      background:var(--card);
+      padding:20px;
+      border-radius:12px;
+      box-shadow:0 6px 22px rgba(12,18,20,0.04);
+      border:1px solid rgba(12,18,20,0.03);
+    }
+    .card h3{margin:0 0 8px 0; color:#0f5132}
+    .card p{margin:0; color:var(--muted)}
+
+    /* Method steps */
+    .steps{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px}
+    .step{background:linear-gradient(180deg, #fff, #fbfdfe); padding:18px; border-radius:10px; border-left:4px solid var(--accent); box-shadow:0 6px 20px rgba(2,6,23,0.03)}
+    .step h4{margin:0 0 6px 0; font-size:16px}
+    .step p{margin:0; color:var(--muted); font-size:14px}
+
+    /* Cases */
+    .cases{display:grid; gap:18px}
+    .case-card{display:flex; gap:16px; align-items:flex-start; background:linear-gradient(180deg,#fff,#fbfdfe); padding:16px; border-radius:12px; border:1px solid rgba(10,20,16,0.03)}
+    .case-thumb{width:170px; height:110px; background:#e6eef0; border-radius:8px; display:flex; align-items:center; justify-content:center; color:var(--muted); font-weight:700}
+    .case-body h4{margin:0 0 8px 0}
+    .case-body p{margin:0;color:var(--muted); font-size:14px}
+    .case-kpis{margin-top:8px; display:flex; gap:12px; flex-wrap:wrap}
+
+    .kpi{background:rgba(15,81,50,0.06); padding:8px 10px; border-radius:8px; font-weight:700; color:#083826; font-size:13px}
+
+    /* Reasons (grid with icons) */
+    .reasons{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px}
+    .reason{display:flex; gap:12px; align-items:flex-start; background:var(--card); padding:12px; border-radius:10px; border:1px solid rgba(12,18,20,0.03)}
+    .reason .icon{width:40px; height:40px; border-radius:8px; background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:white; display:flex; align-items:center; justify-content:center; font-weight:800}
+
+    /* Contact area */
+    .contact{display:grid; grid-template-columns:1fr 380px; gap:22px}
+    .contact form{background:var(--card); padding:18px; border-radius:12px; box-shadow:0 8px 24px rgba(2,6,23,0.03)}
+    .contact input, .contact textarea{width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid rgba(12,18,20,0.06)}
+    .contact button{background:var(--accent); color:#fff; padding:12px 14px; border-radius:8px; font-weight:700; border:none}
+
+    .contact-info{background:linear-gradient(180deg, #fff, #fbfdfe); padding:18px; border-radius:12px; border:1px solid rgba(12,18,20,0.03); display:flex; flex-direction:column; gap:8px}
+
+    footer{padding:28px 20px; text-align:center; color:var(--muted); font-size:14px; border-top:1px solid rgba(12,18,20,0.03); margin-top:40px}
+
+    /* responsiveness */
+    @media (max-width:900px){
+      .hero-inner{flex-direction:column}
+      .contact{grid-template-columns:1fr}
+      .hero-card{max-width:520px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- RIBBON -->
+  <div class="ribbon">Vamos sin casco y de cabeza — Vanttico</div>
+
+  <!-- HERO / PORTADA -->
+  <header class="hero" role="banner">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="logo-wrap" style="text-align:left;">
+          <img src="img/logo-vanttico.png" alt="Vanttico" class="logo-vanttico">
+        </div>
+        <h1 class="title">De la disciplina nace el hábito. De la obsesión, el legado.</h1>
+        <p class="lead">Vanttico transforma negocios con marketing, diseño y funnels pensados para vender. Creemos en la ejecución rápida, la optimización por datos y la obsesión por los resultados.</p>
+        <div class="cta-row">
+          <a class="btn" href="https://wa.me/573208697103" target="_blank">Contáctanos por WhatsApp</a>
+          <a class="btn secondary" href="#servicios">Ver servicios</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-card" aria-hidden="true">
+          <h4>Empieza hoy • Primer diagnóstico gratis</h4>
+          <p>Por tiempo limitado ofrecemos diagnóstico inicial sin costo para los primeros clientes del mes.</p>
+
+          <div class="mini-stats" style="margin-top:14px;">
+            <div class="stat">
+              <strong>+350%</strong>
+              <div style="font-size:12px;color:var(--muted)">Ventas rápidas</div>
+            </div>
+            <div class="stat">
+              <strong>100k+</strong>
+              <div style="font-size:12px;color:var(--muted)">Impresiones virales</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- QUIENES SOMOS -->
+  <section id="quienes">
+    <h2 class="section-title">¿Quiénes somos?</h2>
+    <p class="section-sub">Somos Vanttico, una agencia digital enfocada en resultados. Nos dedicamos a apoyar a negocios físicos y digitales para escalar sus ventas mediante estrategias medibles y diseño que convierte.</p>
+
+    <div class="grid quienes-somos">
+      <div class="card">
+        <h3>Aumentar ventas con marketing digital</h3>
+        <p>Creamos campañas y embudos optimizados para transformar tráfico en clientes. Publicidad, funnels y remarketing con seguimiento de resultados.</p>
+      </div>
+
+      <div class="card">
+        <h3>Impulsar marcas físicas y digitales</h3>
+        <p>Adaptamos tu negocio al entorno digital con presencia, estrategia local y tácticas de conversión que funcionan para tiendas y servicios.</p>
+      </div>
+
+      <div class="card">
+        <h3>Diseño de páginas web que convierten</h3>
+        <p>Páginas visuales, rápidas y enfocadas en la venta: optimización móvil, tests A/B y copy persuasivo para maximizar conversiones.</p>
+      </div>
+
+      <div class="card">
+        <h3>Servicios de afiliados digitales</h3>
+        <p>Asesoría, embudos y contenido para que afiliados generen ventas recurrentes sin depender solo del algoritmo.</p>
+      </div>
+
+      <div class="card">
+        <h3>Automatización de procesos de ventas</h3>
+        <p>Implementamos formularios, secuencias de correo, y CRM básico para que tu embudo trabaje en piloto automático.</p>
+      </div>
+
+      <div class="card">
+        <h3>Consultoría con estrategia ejecutable</h3>
+        <p>Planes con hoja de ruta, objetivos y métricas. Asesoría práctica para ejecutarlo paso a paso o acompañamiento mensual.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS / METODO -->
+  <section id="servicios">
+    <h2 class="section-title">Nuestra metodología</h2>
+    <p class="section-sub">Un proceso claro y estructurado en 5 pasos para que ningún cliente quede insatisfecho.</p>
+
+    <div class="steps">
+      <div class="step">
+        <h4>1 • Diagnóstico inicial</h4>
+        <p>Reunión 1 a 1. Análisis de objetivos y competencia. Entregable: diagnóstico visual.</p>
+      </div>
+      <div class="step">
+        <h4>2 • Propuesta estratégica</h4>
+        <p>Estrategia, cronograma y entregables claros. Alineamos expectativas antes de empezar.</p>
+      </div>
+      <div class="step">
+        <h4>3 • Ejecución colaborativa</h4>
+        <p>Checklists en Notion, comunicación ágil y revisiones definidas. Tú participas del proceso.</p>
+      </div>
+      <div class="step">
+        <h4>4 • Medición y optimización</h4>
+        <p>Reportes periódicos, tests A/B y mejoras continuas según datos.</p>
+      </div>
+      <div class="step">
+        <h4>5 • Acompañamiento</h4>
+        <p>Soporte post-entrega y recomendaciones para escalar en el tiempo.</p>
+      </div>
+    </div>
+  </section>
+
+<!-- Sección de Planes de Precios con COP y USD -->
+<section class="precios" style="background-color:#f8f9fa; padding:60px 20px; text-align:center;">
+    <h2 style="font-size:2.5em; color:#004d40; margin-bottom:20px;">Planes y Precios</h2>
+    <p style="max-width:700px; margin:0 auto 50px; font-size:1.1em; color:#555;">
+        En Vanttico tenemos soluciones para cada etapa de tu negocio. Elige el plan que más se ajuste a tus necesidades
+        y comienza a escalar con estrategias reales que funcionan.
+    </p>
+
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:30px;">
+
+        <!-- Plan Emprendedor -->
+        <div style="background:white; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.08); padding:30px; max-width:300px; flex:1;">
+            <h3 style="color:#004d40; font-size:1.5em;">Plan Emprendedor</h3>
+            <p style="color:#777; margin:15px 0;">Ideal para quienes empiezan desde cero</p>
+            <h4 style="font-size:2em; color:#004d40;">$150.000 COP</h4>
+            <span style="color:#777;">≈ USD 38</span>
+            <ul style="list-style:none; padding:0; text-align:left; margin-top:20px; color:#555;">
+                <li>✔️ Página web básica</li>
+                <li>✔️ 1 campaña de redes sociales</li>
+                <li>✔️ Asesoría inicial 1 hora</li>
+            </ul>
+            <a href="https://wa.me/573208697103" style="display:inline-block; margin-top:20px; padding:12px 25px; background:#004d40; color:white; text-decoration:none; border-radius:6px;">Quiero este plan</a>
+        </div>
+
+        <!-- Plan Profesional -->
+        <div style="background:white; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.08); padding:30px; max-width:300px; flex:1; border:2px solid #004d40;">
+            <h3 style="color:#004d40; font-size:1.5em;">Plan Profesional</h3>
+            <p style="color:#777; margin:15px 0;">Para negocios que quieren crecer más rápido</p>
+            <h4 style="font-size:2em; color:#004d40;">$450.000 COP</h4>
+            <span style="color:#777;">≈ USD 115</span>
+            <ul style="list-style:none; padding:0; text-align:left; margin-top:20px; color:#555;">
+                <li>✔️ Página web profesional</li>
+                <li>✔️ 3 campañas de redes sociales</li>
+                <li>✔️ Optimización SEO básica</li>
+                <li>✔️ 2 horas de asesoría</li>
+            </ul>
+            <a href="https://wa.me/573208697103" style="display:inline-block; margin-top:20px; padding:12px 25px; background:#004d40; color:white; text-decoration:none; border-radius:6px;">Quiero este plan</a>
+        </div>
+
+        <!-- Plan Escala -->
+        <div style="background:white; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.08); padding:30px; max-width:300px; flex:1;">
+            <h3 style="color:#004d40; font-size:1.5em;">Plan Escala</h3>
+            <p style="color:#777; margin:15px 0;">Para empresas que buscan dominar su mercado</p>
+            <h4 style="font-size:2em; color:#004d40;">$1.200.000 COP</h4>
+            <span style="color:#777;">≈ USD 307</span>
+            <ul style="list-style:none; padding:0; text-align:left; margin-top:20px; color:#555;">
+                <li>✔️ Página web avanzada</li>
+                <li>✔️ 5+ campañas de redes sociales</li>
+                <li>✔️ Optimización SEO avanzada</li>
+                <li>✔️ Automatización de procesos</li>
+                <li>✔️ Asesoría continua</li>
+            </ul>
+            <a href="https://wa.me/573208697103" style="display:inline-block; margin-top:20px; padding:12px 25px; background:#004d40; color:white; text-decoration:none; border-radius:6px;">Quiero este plan</a>
+        </div>
+
+    </div>
+</section>
+
+
+  <!-- CASOS DE EXITO -->
+  <section id="casos">
+    <h2 class="section-title">Casos de éxito</h2>
+    <p class="section-sub">Resultados reales (simulados para demostración) que muestran lo que logramos con estrategia y ejecución.</p>
+
+    <div class="cases">
+      <!-- Caso 1 -->
+      <div class="case-card">
+        <div class="case-thumb">Imagen</div>
+        <div class="case-body">
+          <h4>Vértice Moda Urbana — +350% ventas en 3 semanas</h4>
+          <p>Implementamos tienda online, automatización de WhatsApp y campaña local en Meta. Se vendió la colección cápsula y la clientela aumentó significativamente.</p>
+          <div class="case-kpis">
+            <div class="kpi">+350% Ventas</div>
+            <div class="kpi">+4.200 Seguidores</div>
+            <div class="kpi">3 Semanas</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caso 2 -->
+      <div class="case-card">
+        <div class="case-thumb">Mockup</div>
+        <div class="case-body">
+          <h4>Daniel Rico — 2 videos virales y +2.100 leads</h4>
+          <p>Rediseñamos su landing, creamos guía gratuita y ejecutamos estrategia de contenido en TikTok. Dos piezas se viralizaron y generaron alta conversión.</p>
+          <div class="case-kpis">
+            <div class="kpi">100k+ Vistas</div>
+            <div class="kpi">2.100 Leads</div>
+            <div class="kpi">96 Ventas</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caso 3 -->
+      <div class="case-card">
+        <div class="case-thumb">Captura</div>
+        <div class="case-body">
+          <h4>Glow Spa & Nails — Agenda llena y +25% ticket</h4>
+          <p>Landing con agendamiento por WhatsApp, fotos mejoradas y campaña geolocalizada. Resultado: más reservas y mayor ticket promedio.</p>
+          <div class="case-kpis">
+            <div class="kpi">Agenda completa</div>
+            <div class="kpi">+25% Ticket</div>
+            <div class="kpi">2 Meses</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORQUE ELEGIRNOS -->
+  <section id="por-que">
+    <h2 class="section-title">¿Por qué elegirnos?</h2>
+    <p class="section-sub">Cinco razones que nos hacen diferentes y efectivos.</p>
+
+    <div class="reasons">
+      <div class="reason"><div class="icon">1</div><div><strong>Resultados medibles</strong><div style="color:var(--muted)">Decisiones guiadas por métricas, no por intuición.</div></div></div>
+      <div class="reason"><div class="icon">2</div><div><strong>Planes a medida</strong><div style="color:var(--muted)">Estrategias hechas para tu negocio y sector.</div></div></div>
+      <div class="reason"><div class="icon">3</div><div><strong>Metodología probada</strong><div style="color:var(--muted)">Un proceso de 5 pasos para maximizar resultados.</div></div></div>
+      <div class="reason"><div class="icon">4</div><div><strong>Atención directa</strong><div style="color:var(--muted)">Hablas con el responsable del proyecto, sin intermediarios.</div></div></div>
+      <div class="reason"><div class="icon">5</div><div><strong>Velocidad de ejecución</strong><div style="color:var(--muted)">De la idea al lanzamiento en días, no semanas.</div></div></div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <h2 class="section-title">Contáctanos</h2>
+    <p class="section-sub">Listos para ayudarte a escalar — deja tus datos y te contactamos en 24h.</p>
+
+    <div class="contact">
+      <form action="https://formspree.io/f/{tu_codigo}" method="POST">
+        <input type="text" name="name" placeholder="Tu nombre" required />
+        <input type="email" name="email" placeholder="Tu correo" required />
+        <input type="text" name="company" placeholder="Empresa / Proyecto (opcional)" />
+        <textarea name="message" rows="5" placeholder="Cuéntanos tu necesidad" required></textarea>
+        <button type="submit">Enviar mensaje</button>
+      </form>
+
+      <div class="contact-info">
+        <div style="font-weight:800; color:#0f5132; font-size:16px">Contacta directo</div>
+        <div style="color:var(--muted)">📞 WhatsApp: <a href="https://wa.me/573208697103" target="_blank">+57 320 869 7103</a></div>
+        <div style="color:var(--muted)">✉️ Correo: <a href="mailto:vanttico.gerencia@gmail.com">vanttico.gerencia@gmail.com</a></div>
+        <div style="color:var(--muted)">📍 Disponible en Colombia — servicios remotos para LATAM</div>
+
+        <div style="margin-top:14px">
+          <a class="btn" href="https://wa.me/573208697103" target="_blank">Hablar por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    © 2025 Vanttico · De la disciplina nace el hábito. De la obsesión, el legado. · <a href="mailto:vanttico.gerencia@gmail.com">vanttico.gerencia@gmail.com</a>
+  </footer>
+
+</body>
+</html>
